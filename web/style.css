@@ -31,13 +31,14 @@ body {
     grid-template-columns: max-content auto;
     grid-auto-rows: max-content;
     grid-gap: 4px 16px;
+    align-items: center;
 }
 
 .inputs input {
     margin-right: auto;
 }
 
-input[type=number], button {
+input[type=number], input[type=range], button {
     width: 100%;
     padding: 4px;
     background: transparent;
