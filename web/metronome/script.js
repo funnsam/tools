@@ -1,17 +1,18 @@
-var timer = null;
+var timer;
 
 const audioCtx = new(window.AudioContext || window.webkitAudioContext)();
 const gainNode = audioCtx.createGain();
 gainNode.connect(audioCtx.destination);
-gainNode.gain.value = 0.15;
 
 root_elm.onanimationend = () => {
     root_elm.style.animation = "none";
 };
 
 start_btn.onclick = () => {
-    if (timer) clearInterval(timer);
+    clearInterval(timer);
     if (bpm_in.value < 0.1) return;
+
+    gainNode.gain.value = volume_in.value;
 
     var counter = 0;
 
@@ -44,5 +45,5 @@ start_btn.onclick = () => {
 };
 
 stop_btn.onclick = () => {
-    if (timer) clearInterval(timer);
+    clearInterval(timer);
 };
