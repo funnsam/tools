@@ -1,24 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html id="root_elm">
     <head>
+        <meta name="encoding" charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="preload" href="script.js" as="script">
+        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="style.css">
         <title>Metronome</title>
     </head>
     <body>
-        <div>
-            <div><label for="bpm_in">BPM</label> <input id="bpm_in" name="bpm" type="number" min="0.1"></div>
-            <div><label for="beats_in">Beats</label> <input id="beats_in" name="beats" type="number" min="0" step="1"></div>
+        <div class="inputs">
+            <label for="bpm_in">BPM</label> <input id="bpm_in" name="bpm" type="number" min="0.1">
+            <label for="beats_in">Beats</label> <input id="beats_in" name="beats" type="number" min="0" step="1">
+            <label for="flash_in">Flash screen</label> <input id="flash_in" name="flash" type="checkbox">
         </div>
-        <div>
+        <div id="start_stop_div">
             <button id="start_btn">Start</button>
             <button id="stop_btn">Stop</button>
         </div>
-        <div>
-            <span id="count"></span>
-        </div>
-        <div>
-            <a href="..">All tools</a>
+        <div id="count_div">
+            <span id="count_span"></span>
         </div>
         <script src="script.js"></script>
     </body>
