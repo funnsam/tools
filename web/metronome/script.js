@@ -31,7 +31,7 @@ start_btn.onclick = () => {
         oscillator.connect(gainNode);
         oscillator.start();
 
-        count_span.innerText = beats ? `${"░ ".repeat(c)}█${" ░".repeat(beats-c-1)}` : c + 1;
+        count_span.innerText = beats ? `${"○ ".repeat(c)}●${" ○".repeat(beats-c-1)}` : c + 1;
 
         setTimeout(() => {
             oscillator.stop();
