@@ -1,5 +1,5 @@
 {
-    var timer;
+    let timer;
 
     const audioCtx = new(window.AudioContext || window.webkitAudioContext)();
     const gainNode = audioCtx.createGain();
@@ -11,7 +11,7 @@
         clearInterval(timer);
         if (bpm_in.value < 0.1) return;
 
-        var counter = 0;
+        let counter = 0;
 
         const interval = 60_000 / bpm_in.value;
         const beats = beats_in.value;
