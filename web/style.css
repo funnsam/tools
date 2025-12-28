@@ -50,6 +50,10 @@ body {
     grid-column-start: span 2;
 }
 
+button {
+    cursor: pointer;
+}
+
 input[type=number], input[type=range], button {
     width: 100%;
     padding: 4px;
@@ -61,7 +65,6 @@ input[type=number], input[type=range], button {
 
 input[type=number]:hover, button:hover {
     background: hsla(28, 67%, 44%, .25);
-    cursor: pointer;
 }
 
 a {
