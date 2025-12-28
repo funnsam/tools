@@ -31,17 +31,15 @@ div {
     border-radius: 8px;
 }
 
-.inputs {
-    flex: 3;
-}
-
-#start_stop_div {
+#controls_div, #beat_div {
     flex: 1;
 }
 
 #count_div {
-    flex: 2;
+    flex: 1;
     font-size: 2rem;
+    overflow: auto;
+    text-align: center;
 }
 
 @media only screen and (min-width: 768px) {
