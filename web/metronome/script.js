@@ -15,6 +15,7 @@
 
         const interval = 60_000 / bpm_in.value;
         const beats = beats_in.value;
+        const repeat = repeat_in.value;
 
         function tick() {
             const c = beats ? counter++ % beats : counter++;
@@ -33,11 +34,16 @@
             count_span.innerText = beats ? `${"○ ".repeat(c)}●${" ○".repeat(beats-c-1)}` : c + 1;
 
             setTimeout(() => oscillator.stop(), 50);
+
+            if (repeat && counter >= repeat) stop_btn.onclick();
         }
 
         tick();
         timer = setInterval(tick, interval);
     };
 
-    stop_btn.onclick = () => clearInterval(timer);
+    stop_btn.onclick = () => {
+        clearInterval(timer);
+        count_span.innerText = "";
+    }
 }
