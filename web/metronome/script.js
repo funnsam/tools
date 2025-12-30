@@ -33,7 +33,7 @@
 
             count_span.innerText = beats ? `${"○ ".repeat(c)}●${" ○".repeat(beats-c-1)}` : c + 1;
 
-            setTimeout(() => oscillator.stop(), 50);
+            oscillator.stop(audioCtx.currentTime + 0.05);
 
             if (repeat && counter >= repeat) stop_btn.onclick();
         }

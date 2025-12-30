@@ -1,0 +1,51 @@
+@use "../colors.scss";
+
+@keyframes flash {
+    0% {
+        background: colors.$green-7;
+    }
+    100% {
+        background: colors.$green-9;
+    }
+}
+
+@keyframes flash_2 {
+    0% {
+        background: colors.$green-5;
+    }
+    100% {
+        background: colors.$green-9;
+    }
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+div {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    gap: 4px;
+    border: 1px solid colors.$green-5;
+    border-radius: 8px;
+}
+
+#controls_div, #beat_div {
+    flex: 1;
+}
+
+#count_div {
+    flex: 1;
+    font-size: 2rem;
+    overflow: auto;
+    text-align: center;
+}
+
+@media only screen and (min-width: 768px) {
+    body {
+        flex-direction: row;
+    }
+}

@@ -1,49 +1,49 @@
 @keyframes flash {
-    0% {
-        background: hsl(74, 32%, 32%);
-    }
-    100% {
-        background: hsl(88, 38%, 15%);
-    }
+  0% {
+    background: oklch(42% 0.09 138deg);
+  }
+  100% {
+    background: oklch(26% 0.09 138deg);
+  }
 }
-
 @keyframes flash_2 {
-    0% {
-        background: hsl(28, 67%, 44%);
-    }
-    100% {
-        background: hsl(88, 38%, 15%);
-    }
+  0% {
+    background: oklch(62% 0.09 138deg);
+  }
+  100% {
+    background: oklch(26% 0.09 138deg);
+  }
 }
-
 body {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 div {
-    display: flex;
-    flex-direction: column;
-    padding: 8px;
-    gap: 4px;
-    border: 1px solid hsl(74, 32%, 32%);
-    border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  gap: 4px;
+  border: 1px solid oklch(62% 0.09 138deg);
+  border-radius: 8px;
 }
 
 #controls_div, #beat_div {
-    flex: 1;
+  flex: 1;
 }
 
 #count_div {
-    flex: 1;
-    font-size: 2rem;
-    overflow: auto;
-    text-align: center;
+  flex: 1;
+  font-size: 2rem;
+  overflow: auto;
+  text-align: center;
 }
 
 @media only screen and (min-width: 768px) {
-    body {
-        flex-direction: row;
-    }
+  body {
+    flex-direction: row;
+  }
 }
+
+/*# sourceMappingURL=style.css.map */
