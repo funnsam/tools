@@ -2,7 +2,7 @@
 * {
   box-sizing: border-box;
   font-family: "Fira Sans", sans-serif;
-  accent-color: oklch(75% 0.085 258deg);
+  accent-color: rgb(157, 212, 157);
 }
 
 html, body {
@@ -13,13 +13,17 @@ html, body {
 html {
   margin: 0;
   padding: 0;
-  background: oklch(26% 0.09 138deg);
-  color: white;
+  background: rgb(16, 21, 16);
+  color: rgb(224, 228, 219);
 }
 
 body {
   margin: 0;
   padding: 16px;
+}
+
+a {
+  color: inherit;
 }
 
 .inputs {
@@ -45,18 +49,51 @@ button {
 input[type=number], input[type=range], button {
   width: 100%;
   padding: 4px;
-  background: transparent;
   color: inherit;
-  border: 1px solid oklch(75% 0.085 258deg);
   border-radius: 4px;
+  border: none;
 }
 
-input[type=number]:hover, button:hover {
-  background: oklch(60% 0.063 258deg / 0.25);
+input[type=number] {
+  outline: 1px solid rgb(140, 147, 137);
+  background: transparent;
+}
+input[type=number]:hover {
+  outline: 1px solid rgb(224, 228, 219);
+}
+input[type=number]:focus, input[type=number]:active {
+  outline: 3px solid rgb(157, 212, 157);
 }
 
-a {
-  color: inherit;
+button {
+  background: rgb(58, 75, 57);
+}
+button:hover {
+  background: rgb(69.0023699365, 86.3323113364, 67.7693940189);
+}
+button:focus {
+  background: rgb(83.1395563433, 100.8549978762, 81.6181034004);
+}
+button:active {
+  background: rgb(97.6742653915, 115.7469563547, 95.8642141652);
+}
+button {
+  color: rgb(212, 232, 208);
+}
+button.filled {
+  background: rgb(157, 212, 157);
+}
+button.filled:hover {
+  background: rgb(144.1875441447, 198.5134946724, 144.815428211);
+}
+button.filled:focus {
+  background: rgb(128.4060253589, 181.8839394403, 129.8201076153);
+}
+button.filled:active {
+  background: rgb(112.8880545152, 165.5195975318, 115.0984369766);
+}
+button.filled {
+  color: rgb(3, 57, 18);
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,4 +1,4 @@
-@use "colors.scss";
+@use "palette.scss";
 @use "sass:color";
 
 @import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap");
@@ -6,7 +6,7 @@
 * {
     box-sizing: border-box;
     font-family: "Fira Sans", sans-serif;
-    accent-color: colors.$l-blue;
+    accent-color: palette.$primary;
 }
 
 html, body {
@@ -18,13 +18,17 @@ html {
     margin: 0;
     padding: 0;
 
-    background: colors.$green-9;
-    color: colors.$white;
+    background: palette.$surface;
+    color: palette.$on-surface;
 }
 
 body {
     margin: 0;
     padding: 16px;
+}
+
+a {
+    color: inherit;
 }
 
 .inputs {
@@ -50,16 +54,30 @@ button {
 input[type=number], input[type=range], button {
     width: 100%;
     padding: 4px;
-    background: transparent;
     color: inherit;
-    border: 1px solid colors.$l-blue;
     border-radius: 4px;
+    border: none;
 }
 
-input[type=number]:hover, button:hover {
-    background: color.change(colors.$d-blue, $alpha: 0.25);
+input[type=number] {
+    outline: 1px solid palette.$outline;
+    background: transparent;
+
+    &:hover {
+        outline: 1px solid palette.$on-surface;
+    }
+
+    &:focus, &:active {
+        outline: 3px solid palette.$primary;
+    }
 }
 
-a {
-    color: inherit;
+button {
+    @include palette.state(palette.$secondary-container, palette.$on-secondary-container);
+    color: palette.$on-secondary-container;
+
+    &.filled {
+        @include palette.state(palette.$primary, palette.$on-primary);
+        color: palette.$on-primary;
+    }
 }

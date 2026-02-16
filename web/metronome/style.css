@@ -1,17 +1,17 @@
 @keyframes flash {
   0% {
-    background: oklch(42% 0.09 138deg);
+    background: rgb(0, 54, 60);
   }
   100% {
-    background: oklch(26% 0.09 138deg);
+    background: rgb(16, 21, 16);
   }
 }
 @keyframes flash_2 {
   0% {
-    background: oklch(62% 0.09 138deg);
+    background: rgb(36, 52, 36);
   }
   100% {
-    background: oklch(26% 0.09 138deg);
+    background: rgb(16, 21, 16);
   }
 }
 body {
@@ -25,12 +25,14 @@ div {
   flex-direction: column;
   padding: 8px;
   gap: 4px;
-  border: 1px solid oklch(62% 0.09 138deg);
-  border-radius: 8px;
 }
 
 #controls_div, #beat_div {
   flex: 1;
+}
+
+#beat_div {
+  border-bottom: 1px solid rgb(66, 73, 64);
 }
 
 #count_div {
@@ -38,6 +40,12 @@ div {
   font-size: 2rem;
   overflow: auto;
   text-align: center;
+}
+
+#controls_div, #count_div {
+  border: 1px solid rgb(140, 147, 137);
+  border-radius: 8px;
+  overflow: auto;
 }
 
 @media only screen and (min-width: 768px) {
