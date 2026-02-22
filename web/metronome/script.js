@@ -45,5 +45,17 @@
     stop_btn.onclick = () => {
         clearInterval(timer);
         count_span.innerText = "";
-    }
+    };
+
+    document.onkeydown = e => {
+        if (e.key === " ") {
+            e.preventDefault();
+
+            if (count_span.innerText) {
+                stop_btn.onclick();
+            } else {
+                start_btn.onclick();
+            }
+        }
+    };
 }
