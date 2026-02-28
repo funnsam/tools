@@ -58,5 +58,18 @@
         if (wakeLock != null) {
             wakeLock.release().then(() => wakeLock = null);
         }
-    }
+    };
+
+    document.onkeydown = e => {
+        if (e.key === " ") {
+            e.preventDefault();
+
+            if (count_span.innerText) {
+                stop_btn.onclick();
+            } else {
+                start_btn.onclick();
+            }
+        }
+    };
+>>>>>>> origin/main
 }
