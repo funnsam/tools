@@ -1,5 +1,10 @@
 {
-    let timer;
+    if (!("wakeLock" in navigator)) {
+        keep_screen_in.checked = false;
+        keep_screen_in.disabled = true;
+    }
+
+    let timer, wakeLock = null;
 
     const audioCtx = new(window.AudioContext || window.webkitAudioContext)();
     const gainNode = audioCtx.createGain();
@@ -10,6 +15,10 @@
     start_btn.onclick = () => {
         clearInterval(timer);
         if (bpm_in.value < 0.1) return;
+
+        if ("wakeLock" in navigator && keep_screen_in.checked) {
+            navigator.wakeLock.request("screen").then(w => wakeLock = w);
+        }
 
         let counter = 0;
 
@@ -45,5 +54,9 @@
     stop_btn.onclick = () => {
         clearInterval(timer);
         count_span.innerText = "";
+
+        if (wakeLock != null) {
+            wakeLock.release().then(() => wakeLock = null);
+        }
     }
 }
