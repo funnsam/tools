@@ -27,7 +27,7 @@
                 btn.innerText = notes[idx];
             });
             key = null;
-            type_triad.disabled = true;
+            type_scale.disabled = true;
             return;
         }
 
@@ -42,7 +42,7 @@
                 relative(idx);
                 btn.classList.add("filled");
                 key = idx;
-                type_triad.disabled = false;
+                type_scale.disabled = false;
             };
 
             relative_sel.appendChild(btn);
@@ -83,7 +83,7 @@
     function chord(semitone, duration) {
         volume_in.oninput();
 
-        if (type_in.value == "triad") {
+        if (type_in.value == "scale") {
             const d = (semitone + 12 - key) % 12;
             const ty = (d == 0 || d == 5 || d == 7) ? "maj" : (d == 11) ? "dim" : "min";
 
