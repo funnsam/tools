@@ -1,0 +1,57 @@
+@use "../palette.scss";
+
+@keyframes flash {
+    0% {
+        background: palette.$on-tertiary;
+    }
+    100% {
+        background: palette.$surface;
+    }
+}
+
+@keyframes flash_2 {
+    0% {
+        background: palette.$on-secondary;
+    }
+    100% {
+        background: palette.$surface;
+    }
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+div {
+    display: flex;
+    flex-direction: row;
+    padding: 8px;
+    gap: 4px;
+}
+
+#chord_div {
+    display: flex;
+    flex-direction: column;
+}
+
+#pitch_div, #relative_sel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(4em, 1fr));
+    width: 100%;
+}
+
+#type_div {
+    border-bottom: 1px solid palette.$outline-variant;
+}
+
+#chord_div, #control_div {
+    border: 1px solid palette.$outline;
+    border-radius: 8px;
+    overflow: auto;
+}
+
+#chord_div {
+    flex: 1;
+}

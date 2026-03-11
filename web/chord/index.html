@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html id="root_elm">
+    <head>
+        <meta name="encoding" charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preload" href="script.js" as="script">
+        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="style.css">
+        <title>Chord</title>
+    </head>
+    <body>
+        <div id="chord_div" class="inputs">
+            <div id="type_div" class="inputs">
+                <label for="type_in">Chord Type</label><select id="type_in" name="type_in">
+                    <option value="maj">Major</option>
+                    <option value="min">Minor</option>
+                    <option value="dim">Diminished</option>
+                    <option value="aug">Augmented</option>
+                    <option value="sus4">Suspended 4</option>
+                    <option value="sus2">Suspended 2</option>
+                    <option value="5th">Fifth</option>
+                    <option value="raw">1 note only</option>
+                </select>
+            </div>
+            <div id="pitch_div"></div>
+            <div id="relative_div" class="inputs">
+                <label for="relative_en">Roman numerals</label><input id="relative_en" name="relative_en" type="checkbox">
+            </div>
+            <div id="relative_sel"></div>
+        </div>
+        <div id="control_div" class="inputs">
+            <label for="volume_in">Volume</label><input id="volume_in" name="Volume" type="range" min="0" max="1" step="0.01" value="0.15">
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>
