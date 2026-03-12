@@ -39,9 +39,9 @@
                     relative_sel.children[key].classList.remove("filled");
                 }
 
-                relative(idx);
                 btn.classList.add("filled");
                 key = idx;
+                relative(idx);
                 type_scale.disabled = false;
             };
 
@@ -50,12 +50,36 @@
     };
     relative_en.oninput();
 
+    type_in.oninput = () => {
+        if (key != null) {
+            relative(key);
+        }
+    };
+
     function relative(idx) {
         Array.from(pitch_div.children).forEach((btn, j) => {
             const d = (j + 12 - idx) % 12;
             const rn = ["I", "#I", "II", "#II", "III", "IV", "#IV", "V", "#V", "VI", "#VI", "VII"];
-            btn.innerText = rn[d];
+            btn.innerText = processRoman(j, rn[d], type_in.value);
         });
+    }
+
+    function processRoman(d, name, ty) {
+        if (ty == "scale") {
+            return processRoman(d, name, scaleType(d));
+        }
+        const u = name, l = name.toLowerCase();
+        switch (ty) {
+            case "min": return l;
+            case "dim": return l + "°";
+            case "aug": return l + "⁺";
+            case "sus4": return l + "ˢᵘˢ⁴";
+            case "sus2": return l + "ˢᵘˢ²";
+            case "5th": return u + "⁵";
+            case "maj7": return u + "⁷";
+            case "min7": return l + "⁷";
+            default: return u;
+        }
     }
 
     function playFrequency(freq, duration) {
@@ -63,7 +87,7 @@
         const noteGain = audioCtx.createGain();
 
         noteGain.connect(gainNode);
-        noteGain.gain.setValueAtTime(1, audioCtx.currentTime + duration / 3);
+        noteGain.gain.setValueAtTime(1, audioCtx.currentTime + duration * (3/5));
         noteGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + duration);
 
         oscillator.type = "triangle";
@@ -84,13 +108,15 @@
         volume_in.oninput();
 
         if (type_in.value == "scale") {
-            const d = (semitone + 12 - key) % 12;
-            const ty = (d == 0 || d == 5 || d == 7) ? "maj" : (d == 11) ? "dim" : "min";
-
-            return _chord(ty, semitone, duration);
+            return _chord(scaleType(semitone), semitone, duration);
         }
 
         _chord(type_in.value, semitone, duration);
+    }
+
+    function scaleType(semitone) {
+        const d = (semitone + 12 - key) % 12;
+        return (d == 0 || d == 5 || d == 7) ? "maj" : (d == 11) ? "dim" : "min";
     }
 
     function _chord(ty, semitone, duration) {
@@ -102,6 +128,8 @@
             "sus4": [0, 5, 7],
             "sus2": [0, 2, 7],
             "5th": [0, 7],
+            "maj7": [0, 4, 7, 11],
+            "min7": [0, 3, 7, 10],
             "raw": [0],
         }
 
