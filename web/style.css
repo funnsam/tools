@@ -56,12 +56,15 @@ a {
   grid-gap: 4px 16px;
   align-items: center;
 }
-
-.inputs > input {
-  margin-right: auto;
+.inputs > input, .inputs > select {
+  width: 100%;
+  height: 75%;
 }
-
-.inputs > button {
+.inputs > input:is([type=checkbox], [type=radio]) {
+  margin-right: auto;
+  width: auto;
+}
+.inputs > :not(label, input, select) {
   grid-column-start: span 2;
 }
 
@@ -69,22 +72,21 @@ button {
   cursor: pointer;
 }
 
-input[type=number], input[type=range], button {
-  width: 100%;
+button, input, select {
   padding: 4px;
   color: inherit;
   border-radius: 4px;
   border: none;
 }
 
-input[type=number] {
+input:is([type=number], [type=password], [type=text]), select {
   outline: 1px solid rgb(140, 147, 137);
   background: transparent;
 }
-input[type=number]:hover {
+input:is([type=number], [type=password], [type=text]):hover, select:hover {
   outline: 1px solid rgb(224, 228, 219);
 }
-input[type=number]:focus, input[type=number]:active {
+input:is([type=number], [type=password], [type=text]):focus, input:is([type=number], [type=password], [type=text]):active, select:focus, select:active {
   outline: 3px solid rgb(157, 212, 157);
 }
 
@@ -100,6 +102,10 @@ button:focus {
 button:active {
   background: rgb(97.6742653915, 115.7469563547, 95.8642141652);
 }
+button:disabled {
+  background: rgba(224, 228, 219, 0.1);
+  color: rgba(224, 228, 219, 0.38);
+}
 button {
   color: rgb(212, 232, 208);
 }
@@ -114,6 +120,10 @@ button.filled:focus {
 }
 button.filled:active {
   background: rgb(112.8880545152, 165.5195975318, 115.0984369766);
+}
+button.filled:disabled {
+  background: rgba(224, 228, 219, 0.1);
+  color: rgba(224, 228, 219, 0.38);
 }
 button.filled {
   color: rgb(3, 57, 18);

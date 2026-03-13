@@ -25,9 +25,12 @@
             relative_sel.innerHTML = "";
             Array.from(pitch_div.children).forEach((btn, idx) => {
                 btn.innerText = notes[idx];
+                btn.disabled = false;
+                btn.classList.remove("filled");
             });
             key = null;
-            type_scale.disabled = true;
+            type_maj_scale.disabled = true;
+            type_min_scale.disabled = true;
             return;
         }
 
@@ -42,7 +45,8 @@
                 btn.classList.add("filled");
                 key = idx;
                 relative(idx);
-                type_scale.disabled = false;
+                type_maj_scale.disabled = false;
+                type_min_scale.disabled = false;
             };
 
             relative_sel.appendChild(btn);
@@ -60,19 +64,33 @@
         Array.from(pitch_div.children).forEach((btn, j) => {
             const d = (j + 12 - idx) % 12;
             const rn = ["I", "#I", "II", "#II", "III", "IV", "#IV", "V", "#V", "VI", "#VI", "VII"];
+            const dis = {
+                "maj_scale": [1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1],
+                "min_scale": [1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0],
+            };
+
             btn.innerText = processRoman(j, rn[d], type_in.value);
+            btn.disabled = type_in.value.includes("scale") && !dis[type_in.value][d];
+
+            if (d == 0) {
+                btn.classList.add("filled");
+            } else {
+                btn.classList.remove("filled");
+            }
         });
     }
 
     function processRoman(d, name, ty) {
-        if (ty == "scale") {
-            return processRoman(d, name, scaleType(d));
+        switch (ty) {
+            case "maj_scale": return processRoman(d, name, majScaleType(d));
+            case "min_scale": return processRoman(d, name, minScaleType(d));
         }
+
         const u = name, l = name.toLowerCase();
         switch (ty) {
             case "min": return l;
             case "dim": return l + "°";
-            case "aug": return l + "⁺";
+            case "aug": return u + "⁺";
             case "sus4": return l + "ˢᵘˢ⁴";
             case "sus2": return l + "ˢᵘˢ²";
             case "5th": return u + "⁵";
@@ -100,22 +118,27 @@
     }
 
     function frequencyOf(semitone) {
-        return 440 * Math.pow(2, semitone / 12 - (octave_in.value - 4));
+        return 440 * Math.pow(2, semitone / 12 + (octave_in.value - 4));
     }
 
     function chord(semitone, duration) {
         volume_in.oninput();
 
-        if (type_in.value == "scale") {
-            return _chord(scaleType(semitone), semitone, duration);
+        switch (type_in.value) {
+            case "maj_scale": return _chord(majScaleType(semitone), semitone, duration);
+            case "min_scale": return _chord(minScaleType(semitone), semitone, duration);
+            default: return _chord(type_in.value, semitone, duration);
         }
-
-        _chord(type_in.value, semitone, duration);
     }
 
-    function scaleType(semitone) {
+    function majScaleType(semitone) {
         const d = (semitone + 12 - key) % 12;
         return (d == 0 || d == 5 || d == 7) ? "maj" : (d == 11) ? "dim" : "min";
+    }
+
+    function minScaleType(semitone) {
+        const d = (semitone + 12 - key) % 12;
+        return (d == 3 || d == 8 || d == 10) ? "maj" : (d == 2) ? "dim" : "min";
     }
 
     function _chord(ty, semitone, duration) {

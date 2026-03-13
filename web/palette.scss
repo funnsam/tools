@@ -64,4 +64,9 @@ $surface-container-highest: rgb(49 54 48);
     &:active {
         background: color.mix($on, $background, $weight: 28%, $method: oklch);
     }
+
+    &:disabled {
+        background: color.change($on-surface, $alpha: 0.1, $space: oklch);
+        color: color.change($on-surface, $alpha: 0.38, $space: oklch);
+    }
 }

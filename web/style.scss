@@ -63,29 +63,38 @@ a {
     grid-auto-rows: minmax(2em, max-content);
     grid-gap: 4px 16px;
     align-items: center;
-}
 
-.inputs > input {
-    margin-right: auto;
-}
+    & > input, & > select {
+        width: 100%;
+        height: 75%;
+    }
 
-.inputs > button {
-    grid-column-start: span 2;
+    & > input:is([type=checkbox], [type=radio]) {
+        margin-right: auto;
+        width: auto;
+    }
+
+    & > :not(label, input, select) {
+        grid-column-start: span 2;
+    }
 }
 
 button {
     cursor: pointer;
 }
 
-input[type=number], input[type=range], button {
-    width: 100%;
+@mixin any_input() {
     padding: 4px;
     color: inherit;
     border-radius: 4px;
     border: none;
 }
 
-input[type=number] {
+button, input, select {
+    @include any_input();
+}
+
+input:is([type=number], [type=password], [type=text]), select {
     outline: 1px solid palette.$outline;
     background: transparent;
 
