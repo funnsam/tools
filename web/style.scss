@@ -41,9 +41,9 @@ body {
         overflow: auto;
 
         & > hr {
-            color: palette.$outline;
-            background: palette.$outline-variant;
             border: 0;
+            color: palette.$outline-variant;
+            background: palette.$outline-variant;
             height: 1px;
         }
     }

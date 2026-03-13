@@ -35,9 +35,9 @@ body > div {
   overflow: auto;
 }
 body > div > hr {
-  color: rgb(140, 147, 137);
-  background: rgb(66, 73, 64);
   border: 0;
+  color: rgb(66, 73, 64);
+  background: rgb(66, 73, 64);
   height: 1px;
 }
 
