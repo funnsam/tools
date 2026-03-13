@@ -1,7 +1,7 @@
 {
     const notes = [
-        "A", "A#", "B", "C", "C#", "D",
-        "D#", "E", "F", "F#", "G", "G#",
+        "A", "B♭", "B", "C", "D♭", "D",
+        "E♭", "E", "F", "G♭", "G", "A♭",
     ];
 
     const audioCtx = new(window.AudioContext || window.webkitAudioContext)();
@@ -63,7 +63,7 @@
     function relative(idx) {
         Array.from(pitch_div.children).forEach((btn, j) => {
             const d = (j + 12 - idx) % 12;
-            const rn = ["I", "#I", "II", "#II", "III", "IV", "#IV", "V", "#V", "VI", "#VI", "VII"];
+            const rn = ["I", "♭II", "II", "♭III", "III", "IV", "♭V", "V", "♭VI", "VI", "♭VII", "VII"];
             const dis = {
                 "maj_scale": [1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1],
                 "min_scale": [1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0],
