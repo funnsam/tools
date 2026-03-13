@@ -18,19 +18,6 @@
     }
 }
 
-body {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-div {
-    display: flex;
-    flex-direction: column;
-    padding: 8px;
-    gap: 4px;
-}
-
 #controls_div, #beat_div {
     flex: 1;
 }

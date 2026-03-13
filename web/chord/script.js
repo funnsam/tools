@@ -99,9 +99,8 @@
         setTimeout(() => noteGain.disconnect(), duration * 1000 + 100);
     }
 
-    // note is relative to A4
     function frequencyOf(semitone) {
-        return 440 * Math.pow(2, semitone / 12 - 1);
+        return 440 * Math.pow(2, semitone / 12 - (octave_in.value - 4));
     }
 
     function chord(semitone, duration) {

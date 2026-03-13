@@ -25,6 +25,32 @@ html {
 body {
     margin: 0;
     padding: 16px;
+
+    &:has(div) {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    & > div {
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+        border: 1px solid palette.$outline;
+        border-radius: 8px;
+        overflow: auto;
+
+        & > hr {
+            color: palette.$outline;
+            background: palette.$outline-variant;
+            border: 0;
+            height: 1px;
+        }
+    }
+}
+
+div {
+    gap: 8px;
 }
 
 a {
