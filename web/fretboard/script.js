@@ -1,11 +1,44 @@
 {
+    const audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+    const gainNode = audioCtx.createGain();
+    gainNode.connect(audioCtx.destination);
+
+    function playOvertones(freq, duration) {
+        for (let i = 1; i < 5; i++) {
+            playFrequency(freq * i, duration, 1 / i);
+        }
+    }
+
+    function playFrequency(freq, duration, volume) {
+        const oscillator = audioCtx.createOscillator();
+        const noteGain = audioCtx.createGain();
+
+        noteGain.connect(gainNode);
+        const v = volume * 50 / freq;
+        noteGain.gain.value = v;
+        noteGain.gain.setValueAtTime(v, audioCtx.currentTime + duration * (3/5));
+        noteGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + duration);
+
+        oscillator.type = "sine";
+        oscillator.frequency.value = freq;
+        oscillator.connect(noteGain);
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + duration);
+
+        setTimeout(() => noteGain.disconnect(), duration * 1000 + 100);
+    }
+
+    function frequencyOf(semitone) {
+        return 440 * Math.pow(2, semitone / 12);
+    }
+
     const notes = [
         "A", "B♭", "B", "C", "D♭", "D",
         "E♭", "E", "F", "G♭", "G", "A♭",
     ];
 
-    // E2, A2, D3, G3, B3, E4
-    const tuning = [-29, -24, -19, -14, -10, -5];
+    // E4, B3, G3, D3, A2, E2
+    const tuning = [-5, -10, -14, -19, -24, -29];
 
     function semitoneToNoteName(semitone) {
         const adj = semitone < 3 ? Math.ceil(Math.abs(semitone / 12)) : 0;
@@ -15,11 +48,55 @@
         return name + octave;
     }
 
-    tuning.forEach((v, i) => {
-        for (let j = 0; j < 12; j++) {
+    function addDots(frets) {
+        for (let j = 0; j < frets; j++) {
+            const k = j % 12;
+
             const pos = document.createElement("div");
-            pos.innerText = semitoneToNoteName(v + j);
+            pos.innerText =
+                j > 0 && k == 0 ? "• •" :
+                k == 3 || k == 5 || k == 7 || k == 9 ? "•" :
+                "";
+
+            if (j == 0) pos.classList.add("head");
             fretboard.appendChild(pos);
         }
-    });
+    }
+
+    function setHighlight(e, semitone) {
+        const st = e.target.getAttribute("data-semitone");
+        playOvertones(frequencyOf(st), 0.5);
+
+        Array.from(fretboard.children).forEach(btn => {
+            if (btn.hasAttribute("data-semitone")) {
+                const s = btn.getAttribute("data-semitone");
+
+                btn.classList.remove("filled");
+                if ((semitone - s) % 12 == 0) {
+                    btn.classList.add("filled");
+                }
+            }
+        });
+    }
+
+    function makeFretboard(frets) {
+        fretboard.style.setProperty("--small-frets", frets - 1);
+
+        addDots(frets);
+        tuning.forEach((v, i) => {
+            for (let j = 0; j < frets; j++) {
+                const pos = document.createElement("button");
+                pos.innerText = semitoneToNoteName(v + j);
+                pos.onclick = e => setHighlight(e, v + j);
+                pos.setAttribute("data-semitone", v + j);
+
+                if (j == 0) pos.classList.add("head");
+
+                fretboard.appendChild(pos);
+            }
+        });
+        addDots(frets);
+    }
+
+    makeFretboard(12);
 }
