@@ -1,0 +1,14 @@
+@use "../palette.scss";
+
+#fretboard {
+    display: grid;
+    grid-template-columns: min-content repeat(11, min-content);
+    width: 100%;
+    gap: 4px 16px;
+
+    & > :nth-child(12n + 1) {
+        padding-right: 4px;
+        border-right: 2px solid palette.$on-surface;
+        margin-right: 8px;
+    }
+}
