@@ -49,15 +49,15 @@
         return name + octave;
     }
 
-    function addDots(frets) {
+    function addFretLabels(frets) {
         for (let j = 0; j < frets; j++) {
             const k = j % 12;
 
             const pos = document.createElement("div");
-            pos.innerText =
-                j > 0 && k == 0 ? "• •" :
-                k == 3 || k == 5 || k == 7 || k == 9 ? "•" :
-                "";
+            pos.innerText = fret_label_num_in.checked ? j
+                : j > 0 && k == 0 ? "• •"
+                : k == 3 || k == 5 || k == 7 || k == 9 ? "•"
+                : "";
 
             if (j == 0) pos.classList.add("head");
             fretboard.appendChild(pos);
@@ -73,17 +73,22 @@
                 const s = btn.getAttribute("data-semitone");
 
                 btn.classList.remove("filled");
-                if ((semitone - s) % 12 == 0) {
+
+                const hi = same_octave_in.checked ? semitone == s : (semitone - s) % 12 == 0;
+                if (hi) {
                     btn.classList.add("filled");
                 }
             }
         });
     }
 
-    function makeFretboard(frets) {
+    function makeFretboard() {
+        fretboard.innerHTML = "";
+
+        let frets = frets_count_in.value;
         fretboard.style.setProperty("--small-frets", frets - 1);
 
-        addDots(frets);
+        addFretLabels(frets);
         tuning.forEach((v, i) => {
             for (let j = 0; j < frets; j++) {
                 const pos = document.createElement("button");
@@ -96,8 +101,14 @@
                 fretboard.appendChild(pos);
             }
         });
-        addDots(frets);
+        addFretLabels(frets);
     }
 
-    makeFretboard(12);
+    function setup() {
+        makeFretboard();
+        gainNode.gain.value = volume_in.value;
+    }
+
+    setup();
+    settings_close.onclick = setup;
 }

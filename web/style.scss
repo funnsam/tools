@@ -1,4 +1,4 @@
-@use "palette.scss";
+@use "m3.scss";
 @use "sass:color";
 
 @import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap");
@@ -6,7 +6,7 @@
 * {
     box-sizing: border-box;
     font-family: "Fira Sans", sans-serif;
-    accent-color: palette.$primary;
+    accent-color: m3.$primary;
 }
 
 html, body {
@@ -18,8 +18,8 @@ html {
     margin: 0;
     padding: 0;
 
-    background: palette.$surface;
-    color: palette.$on-surface;
+    background: m3.$surface;
+    color: m3.$on-surface;
 }
 
 body {
@@ -36,25 +36,25 @@ body {
         display: flex;
         flex-direction: column;
         padding: 16px;
-        border: 1px solid palette.$outline;
+        border: 1px solid m3.$outline;
         border-radius: 8px;
         overflow: auto;
 
         & > hr {
             border: 0;
-            color: palette.$outline-variant;
-            background: palette.$outline-variant;
+            color: m3.$outline-variant;
+            background: m3.$outline-variant;
             height: 1px;
         }
     }
 }
 
-div {
-    gap: 8px;
-}
-
 a {
     color: inherit;
+}
+
+div {
+    gap: 8px;
 }
 
 .inputs {
@@ -79,8 +79,41 @@ a {
     }
 }
 
-button {
-    cursor: pointer;
+dialog {
+    border: 0;
+    background: m3.$surface-container-high;
+    color: m3.$on-surface-variant;
+    min-width: 280px;
+    max-width: 560px;
+    padding: 24px;
+    border-radius: 28px;
+
+    &::backdrop {
+        background: color.change(m3.$scrim, $alpha: 0.38);
+    }
+
+    & > h1 {
+        margin: 0 0 16px 0;
+        color: m3.$on-surface;
+        line-height: m3.pt(32);
+        font-size: m3.pt(24);
+        font-weight: 400;
+    }
+
+    & > div.actions {
+        display: flex;
+        justify-content: end;
+        gap: 8px;
+        margin-top: 24px;
+
+        & > button {
+            color: m3.$primary;
+            line-height: m3.pt(20);
+            font-size: m3.pt(14);
+            font-weight: 500;
+            background: transparent !important;
+        }
+    }
 }
 
 @mixin any_input() {
@@ -95,24 +128,44 @@ button, input, select {
 }
 
 input:is([type=number], [type=password], [type=text]), select {
-    outline: 1px solid palette.$outline;
+    outline: 1px solid m3.$outline;
     background: transparent;
 
     &:hover {
-        outline: 1px solid palette.$on-surface;
+        outline: 1px solid m3.$on-surface;
     }
 
     &:focus, &:active {
-        outline: 3px solid palette.$primary;
+        outline: 3px solid m3.$primary;
     }
 }
 
 button {
-    @include palette.state(palette.$secondary-container, palette.$on-secondary-container);
-    color: palette.$on-secondary-container;
+    @include m3.state(m3.$secondary-container, m3.$on-secondary-container);
+    color: m3.$on-secondary-container;
+    cursor: pointer;
 
     &.filled {
-        @include palette.state(palette.$primary, palette.$on-primary);
-        color: palette.$on-primary;
+        @include m3.state(m3.$primary, m3.$on-primary);
+        color: m3.$on-primary;
+    }
+
+    &.fab {
+        position: absolute;
+        bottom: 16px;
+        right: 16px;
+        width: 80px;
+        height: 80px;
+        padding: 0;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+
+        & > svg {
+            width: 28px;
+            height: 28px;
+            margin: auto;
+        }
     }
 }

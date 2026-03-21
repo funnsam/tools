@@ -41,12 +41,12 @@ body > div > hr {
   height: 1px;
 }
 
-div {
-  gap: 8px;
-}
-
 a {
   color: inherit;
+}
+
+div {
+  gap: 8px;
 }
 
 .inputs {
@@ -68,8 +68,37 @@ a {
   grid-column-start: span 2;
 }
 
-button {
-  cursor: pointer;
+dialog {
+  border: 0;
+  background: rgb(39, 43, 38);
+  color: rgb(194, 201, 189);
+  min-width: 280px;
+  max-width: 560px;
+  padding: 24px;
+  border-radius: 28px;
+}
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.38);
+}
+dialog > h1 {
+  margin: 0 0 16px 0;
+  color: rgb(224, 228, 219);
+  line-height: 2.2857142857rem;
+  font-size: 1.7142857143rem;
+  font-weight: 400;
+}
+dialog > div.actions {
+  display: flex;
+  justify-content: end;
+  gap: 8px;
+  margin-top: 24px;
+}
+dialog > div.actions > button {
+  color: rgb(157, 212, 157);
+  line-height: 1.4285714286rem;
+  font-size: 1rem;
+  font-weight: 500;
+  background: transparent !important;
 }
 
 button, input, select {
@@ -108,6 +137,7 @@ button:disabled {
 }
 button {
   color: rgb(212, 232, 208);
+  cursor: pointer;
 }
 button.filled {
   background: rgb(157, 212, 157);
@@ -127,6 +157,23 @@ button.filled:disabled {
 }
 button.filled {
   color: rgb(3, 57, 18);
+}
+button.fab {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  width: 80px;
+  height: 80px;
+  padding: 0;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+button.fab > svg {
+  width: 28px;
+  height: 28px;
+  margin: auto;
 }
 
 /*# sourceMappingURL=style.css.map */

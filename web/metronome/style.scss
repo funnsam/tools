@@ -1,20 +1,20 @@
-@use "../palette.scss";
+@use "../m3.scss";
 
 @keyframes flash {
     0% {
-        background: palette.$on-tertiary;
+        background: m3.$on-tertiary;
     }
     100% {
-        background: palette.$surface;
+        background: m3.$surface;
     }
 }
 
 @keyframes flash_2 {
     0% {
-        background: palette.$on-secondary;
+        background: m3.$on-secondary;
     }
     100% {
-        background: palette.$surface;
+        background: m3.$surface;
     }
 }
 
@@ -23,7 +23,7 @@
 }
 
 #beat_div {
-    border-bottom: 1px solid palette.$outline-variant;
+    border-bottom: 1px solid m3.$outline-variant;
 }
 
 #count_div {
@@ -34,7 +34,7 @@
 }
 
 #controls_div, #count_div {
-    border: 1px solid palette.$outline;
+    border: 1px solid m3.$outline;
     border-radius: 8px;
     overflow: auto;
 }

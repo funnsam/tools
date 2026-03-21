@@ -1,4 +1,5 @@
 @use "sass:color";
+@use "sass:math";
 
 $primary: rgb(157 212 157);
 $surface-tint: rgb(157 212 157);
@@ -69,4 +70,8 @@ $surface-container-highest: rgb(49 54 48);
         background: color.change($on-surface, $alpha: 0.1, $space: oklch);
         color: color.change($on-surface, $alpha: 0.38, $space: oklch);
     }
+}
+
+@function pt($x) {
+    @return math.div($x, 14) * 1rem;
 }
