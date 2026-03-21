@@ -33,13 +33,7 @@
         return 440 * Math.pow(2, semitone / 12);
     }
 
-    const notes = [
-        "A", "B♭", "B", "C", "D♭", "D",
-        "E♭", "E", "F", "G♭", "G", "A♭",
-    ];
-
-    // E4, B3, G3, D3, A2, E2
-    const tuning = [-5, -10, -14, -19, -24, -29];
+    var notes, tuning;
 
     function semitoneToNoteName(semitone) {
         const adj = semitone < 3 ? Math.ceil(Math.abs(semitone / 12)) : 0;
@@ -105,8 +99,11 @@
     }
 
     function setup() {
-        makeFretboard();
         gainNode.gain.value = volume_in.value;
+        notes = notation_in.value.split(",");
+        tuning = tuning_in.value.split(",").map(Number);
+
+        makeFretboard();
     }
 
     setup();

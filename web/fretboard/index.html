@@ -20,6 +20,29 @@
                 <label for="frets_count_in">Number of frets</label><input id="frets_count_in" name="frets_count_in" type="number" value="12">
                 <label for="same_octave_in">Same octave only</label><input id="same_octave_in" name="same_octave_in" type="checkbox">
                 <label for="fret_label_num_in">Use fret numbers</label><input id="fret_label_num_in" name="fret_label_num_in" type="checkbox">
+                <label for="notation_in">Note notation</label><select id="notation_in" name="notation_in">
+                    <option value="A,B♭,B,C,D♭,D,E♭,E,F,G♭,G,A♭" selected>Flats (unicode)</option>
+                    <option value="A,Bb,B,C,Db,D,Eb,E,F,Gb,G,Ab">Flats (ASCII)</option>
+                    <option value="A,A♯,B,C,C♯,D,D♯,E,F,F♯,G,G♯">Sharps (unicode)</option>
+                    <option value="A,A#,B,C,C#,D,D#,E,F,F#,G,G#">Sharps (ASCII)</option>
+                </select>
+                <label for="tuning_in">Tuning</label><select id="tuning_in" name="tuning_in">
+                    <optgroup label="Guitar (6 strings)">
+                        <option value="-5,-10,-14,-19,-24,-29" selected>Standard tuning</option>
+                        <option value="-6,-11,-15,-20,-25,-30">Half-step down tuning</option>
+                        <option value="-10,-15,-19,-24,-29,-36">Drop A tuning</option>
+                        <option value="-8,-13,-17,-22,-27,-34">Drop B tuning</option>
+                        <option value="-7,-12,-16,-21,-26,-33">Drop C tuning</option>
+                        <option value="-5,-10,-14,-19,-24,-31">Drop D tuning</option>
+                        <option value="-5,-9,-14,-21,-26,-33">Open C tuning</option>
+                        <option value="-7,-12,-15,-19,-24,-31">Open D tuning</option>
+                        <option value="-5,-10,-13,-17,-22,-29">Open E tuning</option>
+                        <option value="-7,-10,-14,-19,-26,-31">Open G tuning</option>
+                    </optgroup>
+                    <optgroup label="Bass (4 strings)">
+                        <option value="-26,-31,-36,-41">Standard tuning</option>
+                    </optgroup>
+                </select>
             </div>
             <div class="actions">
                 <button id="settings_close" command="close" commandfor="settings">Done</button>
