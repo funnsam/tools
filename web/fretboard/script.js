@@ -5,7 +5,7 @@
 
     function playOvertones(freq, duration) {
         for (let i = 1; i < 5; i++) {
-            playFrequency(freq * i, duration, 1 / i);
+            playFrequency(freq * i, duration, 1 / (i / 2 + 0.5));
         }
     }
 
@@ -14,9 +14,10 @@
         const noteGain = audioCtx.createGain();
 
         noteGain.connect(gainNode);
-        const v = volume * 50 / freq;
-        noteGain.gain.value = v;
-        noteGain.gain.setValueAtTime(v, audioCtx.currentTime + duration * (3/5));
+        const v = volume * 35 / freq;
+        noteGain.gain.value = 0;
+        noteGain.gain.linearRampToValueAtTime(v, audioCtx.currentTime + 0.01);
+        noteGain.gain.linearRampToValueAtTime(v, audioCtx.currentTime + duration - 0.1);
         noteGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + duration);
 
         oscillator.type = "sine";
