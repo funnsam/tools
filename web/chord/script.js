@@ -155,8 +155,10 @@
             "raw": [0],
         }
 
+        chord_composition.innerText = "";
         intervals[ty].forEach((st, _) => {
             playFrequency(frequencyOf(semitone + st), duration);
+            chord_composition.innerText += ` ${notes[(semitone + st) % 12]}`;
         })
     }
 
